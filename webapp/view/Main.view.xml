@@ -1,0 +1,65 @@
+<mvc:View controllerName="sync.ea.salesai.controller.Main"
+    xmlns:l="sap.ui.layout"
+    xmlns:mvc="sap.ui.core.mvc"
+    xmlns:core="sap.ui.core"
+    xmlns="sap.m"
+    height="100%">
+
+    <Page title="AI 기반 수요 예측" showHeader="false">
+        <content>
+            <VBox class="verticalLayoutWithBackground6">
+                <HBox>
+                    <!-- <Button text="QR 코드 생성하기" press="onGenerateQRCode" class="customButtonGreen TOPSUBBUTTON"/> -->
+                    <Text text="AI 기반 수요 예측" class="TOPSUBTEXT font-face2 overlay-text2"/>
+                </HBox>
+            </VBox>
+
+            <Toolbar>
+                <ToolbarSpacer/> <!-- 우측 정렬을 위한 공간 -->
+                <Button text="AI 기반 수요 예측" press="onCreateJsonModel" class="customButtonJSON"/>
+                <Button text="Filter" press="onFilter" class="customButtonGreen"/>
+                <Button text="Clear" press="onClearFilters" class="customButtonRed"/>                            
+            </Toolbar>
+
+            <Toolbar>
+                <Label text="년도 :" />
+                <DatePicker id="tsdatFilter" width="150px" valueFormat="yyyy" displayFormat="yyyy"/>
+                <Label text="플랜트 ID :" />
+                <Input id="aufnrFilter" width="100px"/>
+                <Label text="자재코드 :" />
+                <Input id="chargFilter" width="100px"/>
+            </Toolbar>
+
+            <Table id="dataTable" items="{/SDT010Set}" mode="SingleSelectLeft" selectionChange="onTableRowSelectionChange">
+                <columns>
+                    <Column>
+                        <Text text="판매실적 년도" />
+                    </Column>
+                    <Column>
+                        <Text text="플랜트 ID" />
+                    </Column>
+                    <Column>
+                        <Text text="자재코드" />
+                    </Column>
+                    <Column>
+                        <Text text="총 판매 수량" />
+                    </Column>
+                    <Column>
+                        <Text text="총 매출 실적" />
+                    </Column>
+                </columns>
+                <items>
+                    <ColumnListItem type="Active">
+                        <cells>
+                            <Text text="{SvYear}" />
+                            <Text text="{Werks}" />
+                            <Text text="{Matnr}" />
+                            <ObjectNumber number="{Savqu}" unit="{Meins}" />
+                            <ObjectNumber number="{Totsal}" unit="{Waers}" />
+                        </cells>
+                    </ColumnListItem>
+                </items>
+            </Table>
+        </content>
+    </Page>
+</mvc:View>
