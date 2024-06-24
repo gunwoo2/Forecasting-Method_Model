@@ -1,2 +1,2 @@
-# PP-Package
-sync 프로젝트 PP 패키지
+# (UI) B2B 수요 예측 모델 생성기
+
